@@ -76,7 +76,7 @@ public class App {
         private final Tracer tracer = GlobalOpenTelemetry.getTracer("http-handler");
         //endregion
 
-        //region step3
+        //region step4
         private final TextMapGetter<Headers> getter = new TextMapGetter<>() {
             @Override
             public Iterable<String> keys(Headers headers) {
@@ -92,7 +92,7 @@ public class App {
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            //region step3
+            //region step4
 //            Context context = extractContext(exchange);
 //                    .setParent(context)
             //endregion
@@ -123,7 +123,7 @@ public class App {
             //endregion
         }
 
-        //region step3
+        //region step4
 //        private Context extractContext(HttpExchange exchange) {
 //            return W3CTraceContextPropagator.getInstance().extract(
 //                    Context.root(),
