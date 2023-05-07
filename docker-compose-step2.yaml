@@ -10,7 +10,8 @@ services:
       context: order
       dockerfile: Dockerfile
     environment:
-      - OTEL_SERVICE_NAME=order
+      - OTEL_SPRINGBOOT_RESOURCE_ATTRIBUTES_SERVICE_NAME=order
+      - OTEL_SPRINGBOOT_RESOURCE_ATTRIBUTES_DEPLOYMENT_ENVIRONMENT=otel-demo
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://datadog-agent-otel:4317
     ports:
       - "8081:8081"
@@ -26,6 +27,7 @@ services:
     environment:
       - OTEL_SERVICE_NAME=storage
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://datadog-agent-otel:4317
+      - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-demo
     ports:
       - "8080:8080"
 

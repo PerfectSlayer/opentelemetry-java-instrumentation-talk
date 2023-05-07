@@ -12,6 +12,7 @@ services:
     environment:
       - OTEL_SERVICE_NAME=storage
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://datadog-agent-otel:4317
+      - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-demo
     ports:
       - "8080:8080"
 
