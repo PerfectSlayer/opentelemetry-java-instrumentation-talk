@@ -1,0 +1,7 @@
+### Storage service
+GET http://localhost:8080/storage/hat
+Accept: application/json
+
+### Order service
+GET http://localhost:8081/order/buy
+Accept: application/json
