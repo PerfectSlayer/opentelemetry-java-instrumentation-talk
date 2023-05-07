@@ -26,11 +26,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.opentelemetry.instrumentation</groupId>
-			<artifactId>opentelemetry-spring-boot-starter</artifactId>
-			<version>1.25.0-alpha</version>
-		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

@@ -1,13 +1,10 @@
-FROM maven:3.9.1-eclipse-temurin-17 as builder
+FROM openjdk:17-buster
 WORKDIR /app
+
+RUN apt-get update -y; apt-get install curl -y
+RUN curl -Lo dd-java-agent.jar https://dtdg.co/latest-java-tracer
+
 COPY . ./
-RUN mvn package
-
-FROM eclipse-temurin:17
-#RUN curl -Lo dd-java-agent.jar https://dtdg.co/latest-java-tracer
-WORKDIR /var/storage
-COPY --from=builder /app/target/storage-1.0.0-jar-with-dependencies.jar ./app.jar
-
-#ENTRYPOINT ["java","-javaagent:../dd-java-agent.jar",  "-jar" , "build/libs/calendar-0.0.1-SNAPSHOT.jar"]
-ENTRYPOINT ["java", "-jar" , "app.jar"]
+RUN ./mvnw package
+ENTRYPOINT ["java", "-javaagent:dd-java-agent.jar",  "-jar", "target/storage-1.0.0.jar"]
 EXPOSE 8080

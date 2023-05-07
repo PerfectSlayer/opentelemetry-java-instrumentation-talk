@@ -10,9 +10,12 @@ services:
       context: order
       dockerfile: Dockerfile
     environment:
-      - OTEL_SPRINGBOOT_RESOURCE_ATTRIBUTES_SERVICE_NAME=order
-      - OTEL_SPRINGBOOT_RESOURCE_ATTRIBUTES_DEPLOYMENT_ENVIRONMENT=otel-demo
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://datadog-agent-otel:4317
+      - DD_AGENT_HOST=datadog-agent-otel
+      - DD_SERVICE=order
+      - DD_ENV=otel-demo
+      - DD_TRACE_OTEL_ENABLED=true
+      - DD_TRACE_PROPAGATION_STYLE_INJECT=tracecontext
+      - DD_TRACE_PROPAGATION_STYLE_EXTRACT=tracecontext
     ports:
       - "8081:8081"
 
@@ -25,9 +28,12 @@ services:
       context: storage
       dockerfile: Dockerfile
     environment:
-      - OTEL_SERVICE_NAME=storage
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://datadog-agent-otel:4317
-      - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-demo
+      - DD_AGENT_HOST=datadog-agent-otel
+      - DD_SERVICE=storage
+      - DD_ENV=otel-demo
+      - DD_TRACE_OTEL_ENABLED=true
+      - DD_TRACE_PROPAGATION_STYLE_INJECT=tracecontext
+      - DD_TRACE_PROPAGATION_STYLE_EXTRACT=tracecontext
     ports:
       - "8080:8080"
 
