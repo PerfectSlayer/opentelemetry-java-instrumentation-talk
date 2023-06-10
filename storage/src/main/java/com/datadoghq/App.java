@@ -94,7 +94,7 @@ public class App {
         public void handle(HttpExchange exchange) throws IOException {
             //region step4
 //            Context context = extractContext(exchange);
-//                    .setParent(context)
+//            TODO Apply to span builder: .setParent(context)
             //endregion
 
             //region step1
