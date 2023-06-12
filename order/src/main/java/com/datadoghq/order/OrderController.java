@@ -21,16 +21,11 @@ public class OrderController {
 
     @GetMapping(value = "/buy", produces = MediaType.APPLICATION_JSON_VALUE)
     public Order buy() {
-        int total = Stream.of("hat", "bag", "socks")
+        int total = Stream.of("hat", "bag", "sock")
                 .map(this.storageFeign::getStock)
                 .mapToInt(Storage::count)
                 .sum();
         return new Order(total);
-    }
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
     }
 
     record Order(int count) {
