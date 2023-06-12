@@ -28,11 +28,6 @@ public class OrderController {
         return new Order(total);
     }
 
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
     record Order(int count) {
     }
 }
